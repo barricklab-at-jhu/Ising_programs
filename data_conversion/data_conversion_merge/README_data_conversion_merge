@@ -1,0 +1,7 @@
+The scripts in this folder merget two csv files containing multiple melts (usually of different 
+construct types) and merges them to a singe csv file, and also outputs each individual melt as
+a numpy file.  It also generates melts and constructs files for fitting.
+
+I have also included two csv data files to merge.
+
+Run with python 2.7
