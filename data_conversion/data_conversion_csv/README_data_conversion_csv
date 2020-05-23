@@ -1,0 +1,1 @@
+Converts a single csv file containing multiple melts into a set of numpy files for fitting.
