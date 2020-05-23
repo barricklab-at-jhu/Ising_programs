@@ -1,1 +1,6 @@
 Converts a single csv file containing multiple melts into a set of numpy files for fitting.
+
+This directory contains a jupyter .ipynb version and a straight .py script.  I have also included
+a csv data file to run the conversion on.
+
+Run this in python 2.7
