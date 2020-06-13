@@ -1,3 +1,5 @@
+# Heteropolymer fit
+
 This directory contains python files that perform fits on NRXC-type capped heteropolymer repeat proteins.  
 
 There are three separate .py files for data conversion, generation of fitting equations, and fitting and 
@@ -6,10 +8,5 @@ downstream processing (plotting, boostrapping, statistical analysis, and paramet
 In addition, there is a single jupyter .ipynb notebook that combines all of these functions.  
 
 Finally, there are two combined csv data sets for fitting.  One contains only NRC-type repeats (the same
-data included in the homopolymer fiting folder, and the other contains X-type repeats with a threonine to valine
+data included in the homopolymer fitting folder, and the other contains X-type repeats with a threonine to valine
 substitution.  The data conversion script defines these two csv files.  
-
-When fitting, the directory that houses these data should be used as the path in each script (usually I put 
-versions of the script(s) in the same folder, so they have I can reviewany post-fit settings at a later time).
-
-These run in python 2.7

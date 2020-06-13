@@ -60,7 +60,7 @@ for melt in np.arange(num_melts) + 1:
     temp_nparray = np.array(temp_list)
     construct_melt = temp_df.iloc[0, 2]
     np.save(
-        PATH + construct_melt, temp_nparray
+        os.path.join(PATH, f"{construct_melt}.npy"), temp_nparray
     )  # Writes an npy file to disk for each melt.
     melts.append(construct_melt)
 

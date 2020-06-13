@@ -29,13 +29,17 @@ plt.clf
 RT = 0.001987 * 298.15  #  R in kcal/mol/K, T in Kelvin.
 
 #  Dictionary of frac folded eqns from partition function generator script.
-with open("{0}{1}_frac_folded_dict.json".format(PATH, proj_name)) as ffd:
-    frac_folded_dict = json.load(ffd)
+with open(
+    os.path.join(PATH, f"{proj_name}_frac_folded_dict.json"), "r"
+) as file:
+    frac_folded_dict = json.load(file)
 
-with open("{0}{1}_constructs.json".format(PATH, proj_name)) as construct:
+with open(
+    os.path.join(PATH, f"{proj_name}_constructs.json"), "r"
+) as construct:
     constructs = json.load(construct)
 
-with open("{0}{1}_melts.json".format(PATH, proj_name)) as m:
+with open(os.path.join(PATH, f"{proj_name}_melts.json"), "r") as m:
     melts = json.load(m)
 
 num_melts = len(melts)
@@ -44,17 +48,15 @@ num_constructs = len(constructs)
 melt_data_dict = {}
 for melt in melts:
     melt_data_dict[melt] = np.load(
-        "{0}{1}.npy".format(PATH, melt), allow_pickle=True
+        os.path.join(PATH, f"{melt}.npy"), allow_pickle=True
     )
 
 # Compile fraction folded expressions.
 comp_frac_folded_dict = {}
 for construct in constructs:
-    frac_folded_string = (
-        "frac_folded = " + frac_folded_dict[construct + "_frac_folded"]
-    )
+    frac_folded_string = frac_folded_dict[construct + "_frac_folded"]
     comp_frac_folded = compile(
-        frac_folded_string, "{}_comp_ff".format(construct), "exec"
+        frac_folded_string, "{}_comp_ff".format(construct), "eval"
     )
     comp_frac_folded_dict[construct + "_comp_ff"] = comp_frac_folded
 

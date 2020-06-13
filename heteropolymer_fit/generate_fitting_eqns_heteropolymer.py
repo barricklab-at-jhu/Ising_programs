@@ -176,7 +176,7 @@ for construct in frac_folded_dict:
     frac_folded_dict[construct] = sp.simplify(frac_folded_dict[construct])
     frac_folded_dict[construct] = str(frac_folded_dict[construct])
 
-with open("{0}{1}_frac_folded_dict.json".format(PATH, proj_name), "w") as f:
+with open(os.path.join(PATH, f"{proj_name}_frac_folded_dict.json"), "w") as f:
     json.dump(frac_folded_dict, f)
 
 stop = time.time()
