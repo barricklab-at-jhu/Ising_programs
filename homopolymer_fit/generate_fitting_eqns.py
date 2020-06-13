@@ -1,15 +1,13 @@
 """
 Generates partition function and fraction folded expressions for an NRC
-capped homopolymer series, and generates a melts list and a constructs list.
-
-Most recent revision: 05/21/2020, Doug Barrick
-
+capped homopolymer series, and generates a list of experiment filenames (melts) and a constructs list.
 """
 
 from __future__ import division
 import sympy as sp
 import numpy as np
 import json
+import os
 import time
 
 start = time.time()
@@ -18,8 +16,7 @@ print(
     "\nGenerating partition functions and fraction folded expressions.  This may take a minute..."
 )
 
-path = "/Users/dougbarrick/OneDrive - Johns Hopkins/Manuscripts/Ising_program/\
-Scripts/scripts_vanilla_NRC/cANK_scripts/cANK_spyder_scripts/"
+PATH = os.path.dirname(os.path.abspath(__file__))
 proj_name = "cANK"
 
 # Parameters for partition function calculation.  Note these are sympy symbols.
@@ -37,7 +34,7 @@ W = sp.Symbol("W")
 
 np.exp = sp.Function("np.exp")
 
-with open("{0}{1}_constructs.txt".format(path, proj_name)) as cons:
+with open("{0}{1}_constructs.txt".format(PATH, proj_name)) as cons:
     constructs = json.load(cons)
 
 # define matricies  and end vectors to be used to calculate partition functions
@@ -127,7 +124,7 @@ for construct in frac_folded_dict:
     frac_folded_dict[construct] = sp.simplify(frac_folded_dict[construct])
     frac_folded_dict[construct] = str(frac_folded_dict[construct])
 
-with open("{0}{1}_frac_folded_dict.txt".format(path, proj_name), "wb") as f:
+with open("{0}{1}_frac_folded_dict.txt".format(PATH, proj_name), "wb") as f:
     json.dump(frac_folded_dict, f)
 
 
