@@ -19,18 +19,16 @@ for publication.  A preprint can be obtained from Doug Barrick (barrick@jhu.edu)
 [License](LICENSE.txt)
 
 ## Setup
-```
-git clone https://github.com/barricklab-at-jhu/Ising_programs.git
-```
+To run the code, follow the instructions below:
+1. git clone the repository:
+
+    ```git clone https://github.com/barricklab-at-jhu/Ising_programs.git```
 1. Create and activate a new environment (requires conda or miniconda):
     ```bash
     conda env create -n "ising_py3" python=3.8
     conda activate ising_py3
     ```
-2. Install from ```setup.py```:
-   ```bash
-   pip install .
-   ```
+If one is more comfortable working in ```virtualenv```, a ```requirements.txt``` also provided.
 
 ## Quikstart
 1. To run the code via the self-contained notebooks (after setup above):
