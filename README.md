@@ -37,5 +37,6 @@ git clone https://github.com/barricklab-at-jhu/Ising_programs.git
    * ```jupyter notebook```
    * navigate to```examples/homopolymer_fit/Ising_fitter_heteropolymer.ipynb``` OR ```examples/heteropolymer_fit/Ising_fitter_homopolymer.ipynb```
 
-2. To run the code via each script (after setup above)
-   * ```data_conversion.py```
+2. To run the code via each script (after setup above):
+   * Each script can be executed independently in the directory it resides:
+      * e.g. ```python data_conversion.py```
