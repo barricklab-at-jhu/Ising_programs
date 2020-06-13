@@ -190,7 +190,9 @@ fitted_ising_params = [
     ["RedChi", result.redchi],
 ]
 
-with open("{0}{1}_fitted_Ising_params.csv".format(PATH, proj_name), "wb") as n:
+with open(
+    os.path.join(PATH, f"{proj_name}_fitted_Ising_params.csv"), "w"
+) as n:
     writer = csv.writer(n, delimiter=",")
     writer.writerows(fitted_ising_params)
 n.close()
@@ -204,7 +206,7 @@ for melt in melts:
     bu = result.params["bu_%s" % (melt)].value
     fitted_base_params.append([melt, af, bf, au, bu])
 with open(
-    "{0}{1}_fitted_baseline_params.csv".format(PATH, proj_name), "wb"
+    os.path.join(PATH, f"{proj_name}_fitted_baseline_params.csv"), "w"
 ) as m:
     writer = csv.writer(m, delimiter=",")
     writer.writerows(fitted_base_params)
@@ -243,12 +245,13 @@ mX = result.params["mX"].value
 
 # The function fit_model used for plotting best-fit lines and for adding
 # residuals to best-fit lines in bootstrapping.  Normalized, not frac folded.
-def fit_model(params, x, frac_folded, melt):
+def fit_model(params, x, melt):
     denat = x
     af = result.params["af_{}".format(melt)].value
     bf = result.params["bf_{}".format(melt)].value
     au = result.params["au_{}".format(melt)].value
     bu = result.params["bu_{}".format(melt)].value
+    frac_folded = eval(comp_frac_folded_dict[melt[:-2] + "_comp_ff"])
     return ((af * denat) + bf) * frac_folded + (
         ((au * denat) + bu) * (1 - frac_folded)
     )
@@ -275,7 +278,7 @@ denat_fit = np.linspace(0, denat_bound, 300)
 construct1_data_dict = {}
 for construct in constructs:
     construct1_data_dict[construct] = np.load(
-        "{0}{1}.npy".format(PATH, construct + "_1")
+        os.path.join(PATH, f"{construct}_1.npy")
     )
 
 # The four dictionaries below define lower and upper denaturant limnits to be
@@ -352,7 +355,6 @@ for melt in melts:
     norm_sig = melt_data_dict[melt][:, 1]  # A numpy array of type str
     denat = denat.astype(float)  # A numpy array of type float
     norm_sig = norm_sig.astype(float)  # A numpy array of type float
-
     y_adj = baseline_adj(norm_sig, denat, result.params, melt)
     y_fit = fit_model(result.params, denat_fit, melt)
     y_fit_adj = baseline_adj(y_fit, denat_fit, result.params, melt)
@@ -381,7 +383,7 @@ plt.ylabel("Fraction Folded", fontdict=label_font)
 
 # saving plot in individual doc
 plt.savefig(
-    "{0}{1}_plot_frac_folded_by_melt".format(PATH, proj_name),
+    os.path.join(PATH, f"{proj_name}_plot_frac_folded_by_melt"),
     dpi=500,
     bbox_inches="tight",
 )
@@ -428,7 +430,7 @@ plt.ylabel("Normalized Signal", fontdict=label_font)
 
 # saving plot in individual doc
 plt.savefig(
-    "{0}{1}_plot_normalized_by_melt".format(PATH, proj_name),
+    os.path.join(PATH, f"{proj_name}_plot_normalized_by_melt"),
     dpi=500,
     bbox_inches="tight",
 )
@@ -452,6 +454,8 @@ for construct in constructs:
     denat = denat.astype(float)  # A numpy array of type float
     denat_line = denat_line.astype(float)  # A numpy array of type float
     norm_sig = norm_sig.astype(float)  # A numpy array of type float
+    string_to_eval = comp_frac_folded_dict[melt[:-2] + "_comp_ff"]
+    frac_folded = eval(string_to_eval)
     y_adj = baseline_adj(norm_sig, denat_line, result.params, construct + "_1")
     y_fit = fit_model(result.params, denat_fit, construct + "_1")
     y_fit_adj = baseline_adj(y_fit, denat_fit, result.params, construct + "_1")
@@ -674,7 +678,7 @@ for j in range(0, bs_iter_tot):
         time.sleep(120)
 
 
-with open("{0}{1}_bootstrap_params.csv".format(PATH, proj_name), "wb") as n:
+with open(os.path.join(PATH, f"{proj_name}_bootstrap_params.csv"), "w") as n:
     writer = csv.writer(n, delimiter=",")
     writer.writerows(bs_param_values)
 n.close()
@@ -716,13 +720,15 @@ for param in bs_param_names:
     bs_statistics_df.loc[param] = bs_statistics
     i = i + 1
 
-bs_statistics_df.to_csv("{}{}_bootstrap_stats.csv".format(PATH, proj_name))
+bs_statistics_df.to_csv(os.path.join(PATH, f"{proj_name}_bootstrap_stats.csv"))
 
 corr_coef_matrix = np.corrcoef(bs_param_values_array, rowvar=False)
 corr_coef_df = pd.DataFrame(
     corr_coef_matrix, columns=bs_param_names, index=bs_param_names
 )
-corr_coef_df.to_csv("{}{}_bootstrap_corr_coefs.csv".format(PATH, proj_name))
+corr_coef_df.to_csv(
+    os.path.join(PATH, f"{proj_name}_bootstrap_corr_coefs.csv")
+)
 
 
 ## GENERATE BOOTSTRAP PARAMETER CORRELATION PLOTS AND HISTOGRAMS
@@ -775,7 +781,7 @@ corr_params_dict = {
 }
 
 # PDF that stores a grid of the correlation plots
-with PdfPages("{0}{1}_Corr_Plots.pdf".format(PATH, proj_name)) as pdf:
+with PdfPages(os.path.join(PATH, f"{proj_name}_Corr_Plots.pdf")) as pdf:
     fig, axs = plt.subplots(ncols=gridsize, nrows=gridsize, figsize=(20, 20))
 
     # Turns off axes on lower triangle
