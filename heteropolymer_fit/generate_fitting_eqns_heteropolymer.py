@@ -16,9 +16,7 @@ proj_name = "T4V_NRC_2mi"
 
 start = time.time()
 
-print(
-    "\nGenerating partition functions and fraction folded expressions.  This may take a minute..."
-)
+print("\nGenerating partition functions and fraction folded expressions...")
 
 # Parameters for partition function calculation.  Note these are sympy symbols.
 RT = sp.Symbol("RT")

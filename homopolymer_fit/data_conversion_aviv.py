@@ -13,6 +13,7 @@ import time
 start = time.time()
 
 PATH = os.path.dirname(os.path.abspath(__file__))
+NRC_DATA_PATH = os.path.join(PATH, "NRC_data")
 proj_name = "cANK"
 
 den_nsig_const_melt = []
@@ -29,7 +30,7 @@ den_nsig_const_melt_df = pd.DataFrame(
 
 # Gets file names, and extracts information including construct name, melt number.
 num = 0
-for filename in glob.glob("{}*.dat".format(PATH)):
+for filename in glob.glob(os.path.join(NRC_DATA_PATH, "*.dat")):
     num = num + 1
     base = ntpath.basename(filename)
     melt = base.split(".")[0]
@@ -78,7 +79,7 @@ for filename in glob.glob("{}*.dat".format(PATH)):
             )
         melt_array = np.array(single_melt_dncm)
         np.save(
-            PATH + melt, melt_array
+            os.path.join(PATH, f"{melt}.npy"), melt_array
         )  # Writes an npy file to disk for each melt.
         temp_df = pd.DataFrame(melt_array)
         den_nsig_const_melt_df = den_nsig_const_melt_df.append(temp_df)
@@ -87,7 +88,9 @@ for filename in glob.glob("{}*.dat".format(PATH)):
         melts.append(melt)
 
 den_nsig_const_melt_df.to_csv(
-    "{}{}_combined_data.csv".format(PATH, proj_name), index=False, header=False
+    os.path.join(PATH, f"{proj_name}_combined_data.csv"),
+    index=False,
+    header=False,
 )
 
 # This loop puts melts in order of type (NRxC, NRx, RxC) and length.
@@ -113,10 +116,10 @@ for melt in melts:
         constructs.append(construct)
 
 # Write out the results.
-with open("{0}{1}_constructs.txt".format(PATH, proj_name), "wb") as r:
+with open(os.path.join(PATH, f"{proj_name}_constructs.json"), "w") as r:
     json.dump(constructs, r)
 
-with open("{0}{1}_melts.txt".format(PATH, proj_name), "wb") as s:
+with open(os.path.join(PATH, f"{proj_name}_melts.json"), "w") as s:
     json.dump(melts, s)
 
 stop = time.time()

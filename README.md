@@ -36,3 +36,6 @@ git clone https://github.com/barricklab-at-jhu/Ising_programs.git
 1. To run the code via the self-contained notebooks (after setup above):
    * ```jupyter notebook```
    * navigate to```examples/homopolymer_fit/Ising_fitter_heteropolymer.ipynb``` OR ```examples/heteropolymer_fit/Ising_fitter_homopolymer.ipynb```
+
+2. To run the code via each script (after setup above)
+   * ```data_conversion.py```

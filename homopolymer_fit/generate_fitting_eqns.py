@@ -12,9 +12,7 @@ import time
 
 start = time.time()
 
-print(
-    "\nGenerating partition functions and fraction folded expressions.  This may take a minute..."
-)
+print("\nGenerating partition functions and fraction folded expressions...")
 
 PATH = os.path.dirname(os.path.abspath(__file__))
 proj_name = "cANK"
@@ -34,7 +32,7 @@ W = sp.Symbol("W")
 
 np.exp = sp.Function("np.exp")
 
-with open("{0}{1}_constructs.txt".format(PATH, proj_name)) as cons:
+with open(os.path.join(PATH, f"{proj_name}_constructs.json"), "r") as cons:
     constructs = json.load(cons)
 
 # define matricies  and end vectors to be used to calculate partition functions
@@ -124,18 +122,10 @@ for construct in frac_folded_dict:
     frac_folded_dict[construct] = sp.simplify(frac_folded_dict[construct])
     frac_folded_dict[construct] = str(frac_folded_dict[construct])
 
-with open("{0}{1}_frac_folded_dict.json".format(PATH, proj_name), "w") as f:
+with open(os.path.join(PATH, f"{proj_name}_frac_folded_dict.json"), "w") as f:
     json.dump(frac_folded_dict, f)
 
 
 stop = time.time()
 runtime = stop - start
 print("\nThe elapsed time was " + str(runtime) + " sec")
-
-
-print("\n")
-print(
-    """NOTE! You must quit the kernel before running the Ising fitter
-      to clear the namespace. Otherwise you will get an error because
-      numpy.exp has been reassigned."""
-)
