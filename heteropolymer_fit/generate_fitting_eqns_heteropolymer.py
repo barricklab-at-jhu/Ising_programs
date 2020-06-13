@@ -1,9 +1,6 @@
 """
 Generates a partition function and fraction folded expressions for an NRXC
 capped heteropolymer repeat array.
-
-Most recent revision: 05/21/2020, Doug Barrick
-
 """
 
 from __future__ import division
@@ -11,9 +8,9 @@ import sympy as sp
 import numpy as np
 import json
 import time
+import os
 
-path = "/Users/dougbarrick/OneDrive - Johns Hopkins/Manuscripts/Ising_program/\
-Scripts/scripts_mutations/T4V_two_mi_values_2020_05_10/T4V_mR_mX_spyder/"
+PATH = os.path.dirname(os.path.abspath(__file__))
 
 proj_name = "T4V_NRC_2mi"
 
@@ -45,9 +42,9 @@ TXX = sp.Symbol("TXX")
 TXR = sp.Symbol("TXR")
 TRX = sp.Symbol("TRX")
 
-np.exp = sp.Function("np.exp")
+exp = sp.Function("np.exp")
 
-with open("{0}{1}_constructs.txt".format(path, proj_name)) as cons:
+with open(os.path.join(PATH, f"{proj_name}_constructs.json"), "r") as cons:
     constructs = json.load(cons)
 
 # define weight matricies and end vectors to be used to calculate partition functions
@@ -166,29 +163,22 @@ for construct in constructs:
 for construct in frac_folded_dict:
     frac_folded_dict[construct] = frac_folded_dict[construct].subs(
         {
-            KN: (np.exp(-((dGN + (mR * denat)) / RT))),
-            KR: (np.exp(-((dGR + (mR * denat)) / RT))),
-            KX: (np.exp(-((dGX + (mX * denat)) / RT))),
-            KC: (np.exp(-((dGC + (mR * denat)) / RT))),
-            TRR: (np.exp(-dGRR / RT)),
-            TXX: (np.exp(-dGXX / RT)),
-            TXR: (np.exp(-dGXR / RT)),
-            TRX: (np.exp(-dGRX / RT)),
+            KN: (exp(-((dGN + (mR * denat)) / RT))),
+            KR: (exp(-((dGR + (mR * denat)) / RT))),
+            KX: (exp(-((dGX + (mX * denat)) / RT))),
+            KC: (exp(-((dGC + (mR * denat)) / RT))),
+            TRR: (exp(-dGRR / RT)),
+            TXX: (exp(-dGXX / RT)),
+            TXR: (exp(-dGXR / RT)),
+            TRX: (exp(-dGRX / RT)),
         }
     )
     frac_folded_dict[construct] = sp.simplify(frac_folded_dict[construct])
     frac_folded_dict[construct] = str(frac_folded_dict[construct])
 
-with open("{0}{1}_frac_folded_dict.txt".format(path, proj_name), "wb") as f:
+with open("{0}{1}_frac_folded_dict.json".format(PATH, proj_name), "w") as f:
     json.dump(frac_folded_dict, f)
 
 stop = time.time()
 runtime = stop - start
 print("\nThe elapsed time was " + str(runtime) + " sec")
-
-print("\n")
-print(
-    """NOTE! You must quit the kernel before running the Ising fitter
-      to clear the namespace. Otherwise you will get an error because
-      numpy.exp has been reassigned."""
-)
