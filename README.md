@@ -19,23 +19,39 @@ for publication.  A preprint can be obtained from Doug Barrick (barrick@jhu.edu)
 [License](LICENSE.txt)
 
 ## Setup
-To run the code, follow the instructions below:
+To run the most recent code, follow the instructions below:
 1. git clone the repository:
 
     ```git clone https://github.com/barricklab-at-jhu/Ising_programs.git```
-1. Create and activate a new environment (requires conda or miniconda):
+  
+2. Create and activate a new environment (requires conda or miniconda):
     ```bash
     conda env create -f environment.yml
     conda activate ising_py3
     ```
+   
+To run a version of the code linked to the publication, <insert protein science link> follow these instructions:
+1. git clone the publication branch from the repository:
+
+    ```git clone -b publication_master https://github.com/barricklab-at-jhu/Ising_programs.git```
+  
+2. Create and activate a new environment (requires conda or miniconda):
+    ```bash
+    conda env create -f environment.yml
+    conda activate ising_py3
+    ```
+
 If one is more comfortable working in ```virtualenv```, a ```requirements.txt``` also provided.
 
 ## Quikstart
-1. To run the code via the self-contained notebooks (after setup above):
+1. To run the code via the self-contained instructional notebooks (after setup above):
    * ```jupyter notebook```
    * navigate to```homopolymer_fit/ising_fitter_homopolymer_fit.ipynb``` OR ```heteropolymer_fit/ising_fitter_heteropolymer_fit.ipynb```
 
 2. To run each program independently (after setup above):
-   * Each script can be executed independently in the directory it resides:
+   * Each program can be executed independently in the directory it resides:
       * e.g. ```python data_conversion.py```
+      
+      
+
       
