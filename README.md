@@ -25,7 +25,7 @@ To run the code, follow the instructions below:
     ```git clone https://github.com/barricklab-at-jhu/Ising_programs.git```
 1. Create and activate a new environment (requires conda or miniconda):
     ```bash
-    conda env create -n "ising_py3" python=3.8
+    conda env create -f environment.yml
     conda activate ising_py3
     ```
 If one is more comfortable working in ```virtualenv```, a ```requirements.txt``` also provided.
@@ -33,8 +33,9 @@ If one is more comfortable working in ```virtualenv```, a ```requirements.txt```
 ## Quikstart
 1. To run the code via the self-contained notebooks (after setup above):
    * ```jupyter notebook```
-   * navigate to```examples/homopolymer_fit/Ising_fitter_heteropolymer.ipynb``` OR ```examples/heteropolymer_fit/Ising_fitter_homopolymer.ipynb```
+   * navigate to```homopolymer_fit/ising_fitter_homopolymer_fit.ipynb``` OR ```heteropolymer_fit/ising_fitter_heteropolymer_fit.ipynb```
 
-2. To run the code via each script (after setup above):
+2. To run each program independently (after setup above):
    * Each script can be executed independently in the directory it resides:
       * e.g. ```python data_conversion.py```
+      
