@@ -2,5 +2,3 @@ These two scripts calculate partial correlation coefficients from boostrapped pa
 One is a jupyter .ipynb notebook, and the other is a straight .py script.  
 
 Also included is a set of bootstrapped parameter values for the correlation plot.
-
-This needs to be run in python 3.7 because Pingouin does not run in python 2.

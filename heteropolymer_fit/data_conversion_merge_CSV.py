@@ -3,17 +3,16 @@ Combines csv files for different types of capped repeat arrays (NRC homopolymer
 arrays and NRXC heteropolymer arrays with point substitions (here T4V in
 consensus ankyrin repeat arrays, creates numpy files for each melt, and 
 generates a melt list and a construct list.
-
-Most recent revision: 05/21/2020, Doug Barrick
-
 """
 
 import numpy as np
 import pandas as pd
 import json
+import os
 
-path = "/Users/dougbarrick/OneDrive - Johns Hopkins/Manuscripts/Ising_program/\
-Scripts/scripts_mutations/T4V_two_mi_values_2020_05_10/"
+PATH = os.path.dirname(os.path.abspath(__file__))
+# move to package ising.data imports when complete
+
 
 proj_name = "T4V_NRC_2mi"
 
@@ -24,11 +23,11 @@ constructs = (
 melts = []  # List of melts to be used in fitting script
 
 T4V_input_df = pd.read_csv(
-    "{}T4Vdata_not_normalized.csv".format(path),
+    os.path.join(PATH, "T4Vdata_not_normalized.csv"),
     names=["denat", "signal", "construct_melt", "dataset"],
 )
 NRC_input_df = pd.read_csv(
-    "{}NRC_data_dnmn.csv".format(path),
+    os.path.join(PATH, "NRC_data_dnmn.csv"),
     names=["denat", "signal", "construct_melt", "dataset"],
 )
 maxT4Vmelt = T4V_input_df[
@@ -42,7 +41,7 @@ combined_input_df = pd.concat(
     names=["denat", "signal", "construct_melt", "dataset"],
 )
 combined_input_df.to_csv(
-    "{}T4V_NRC_dnmn.csv".format(path), index=False, header=False
+    os.path.join(PATH, "T4V_NRC_dnmn.csv"), index=False, header=False
 )
 
 num_melts = combined_input_df["dataset"].max()
@@ -61,7 +60,7 @@ for melt in np.arange(num_melts) + 1:
     temp_nparray = np.array(temp_list)
     construct_melt = temp_df.iloc[0, 2]
     np.save(
-        path + construct_melt, temp_nparray
+        os.path.join(PATH, f"{construct_melt}.npy"), temp_nparray
     )  # Writes an npy file to disk for each melt.
     melts.append(construct_melt)
 
@@ -93,8 +92,8 @@ for melt in melts:
     if melt[:-2] not in constructs:
         constructs.append(melt[:-2])
 
-with open("{0}{1}_constructs.txt".format(path, proj_name), "wb") as r:
-    json.dump(constructs, r)
+with open(os.path.join(PATH, f"{proj_name}_constructs.json"), "w") as file:
+    json.dump(constructs, file)
 
-with open("{0}{1}_melts.txt".format(path, proj_name), "wb") as s:
-    json.dump(melts, s)
+with open(os.path.join(PATH, f"{proj_name}_melts.json"), "w") as file:
+    json.dump(melts, file)

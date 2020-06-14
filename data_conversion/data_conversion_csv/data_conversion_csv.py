@@ -9,9 +9,9 @@ Most recent revision: 05/21/2020, Doug Barrick
 import numpy as np
 import pandas as pd
 import json
+import os
 
-path = "/Users/dougbarrick/OneDrive - Johns Hopkins/Manuscripts/Ising_program/\
-Scripts/scripts_vanilla_NRC/cANK_scripts/cANK_spyder_scripts/data_conversion_csv/"
+PATH = os.path.dirname(os.path.abspath(__file__))
 
 proj_name = "AnkT4V"
 
@@ -47,7 +47,7 @@ for melt in np.arange(num_melts) + 1:
     construct_melt = temp_df.iloc[0, 2]
     melts.append(construct_melt)
     np.save(
-        path + construct_melt, temp_nparray
+        PATH + construct_melt, temp_nparray
     )  # Writes an npy file to disk for each melt.
 
     # Generate a list of just the constructs.  The loop removes duplicates.
@@ -55,8 +55,8 @@ for melt in np.arange(num_melts) + 1:
         if melt[:-2] not in constructs:
             constructs.append(melt[:-2])
 
-with open("{0}{1}_constructs.txt".format(path, proj_name), "wb") as r:
+with open("{0}{1}_constructs.json".format(PATH, proj_name), "w") as r:
     json.dump(constructs, r)
 
-with open("{0}{1}_melts.txt".format(path, proj_name), "wb") as s:
+with open("{0}{1}_melts.json".format(PATH, proj_name), "w") as s:
     json.dump(melts, s)
