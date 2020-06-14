@@ -110,6 +110,7 @@ homopolymer_fit/cANK_fitted_Ising_params.csv
 homopolymer_fit/cANK_plot_frac_folded_by_melt.png
 homopolymer_fit/cANK_plot_normalized_by_construct.png
 homopolymer_fit/cANK_plot_normalized_by_melt.png
+homopolymer_fit/cANK_bootstrap_params.csv
 homopolymer_fit/*.png
 # pyenv
 #   For a library or package, you might want to ignore these files since the code is
