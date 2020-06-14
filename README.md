@@ -1,6 +1,13 @@
 # Ising_programs
 
-A suite of python programs to analyze repeat-protein unfolding data with a 1D Ising model.
+A suite of python programs to analyze repeat-protein unfolding data with a 1D Ising model. 
+
+Homopolymer 1D Ising Fit           |  Heteropolymer 1D Ising Fit
+:-------------------------:|:-------------------------:
+![homopolymer_fit](homopolymer_ff_construct.png)  |  ![heteropolymer_fit](heteropolymer_ff_construct.png)
+
+
+
 
 This repository contains four main folders. The two main folders (```heteropolymer_fit``` and ```homopolymer_fit```) contain scripts to run 1D Ising analysis.
 One is for "capped homopolymeric" NRC-type repeats, and the other is for capped heteropolymeric NRXC-type repeats.
