@@ -383,7 +383,7 @@ plt.ylabel("Fraction Folded", fontdict=label_font)
 
 # saving plot in individual doc
 plt.savefig(
-    os.path.join(PATH, f"{proj_name}_plot_frac_folded_by_melt"),
+    os.path.join(PATH, f"{proj_name}_plot_frac_folded_by_melt.png"),
     dpi=500,
     bbox_inches="tight",
 )
@@ -430,7 +430,7 @@ plt.ylabel("Normalized Signal", fontdict=label_font)
 
 # saving plot in individual doc
 plt.savefig(
-    os.path.join(PATH, f"{proj_name}_plot_normalized_by_melt"),
+    os.path.join(PATH, f"{proj_name}_plot_normalized_by_melt.png"),
     dpi=500,
     bbox_inches="tight",
 )
@@ -487,7 +487,7 @@ plt.ylabel("Fraction Folded", fontdict=label_font)
 
 # saving plot in individual doc
 plt.savefig(
-    "{0}{1}_plot_frac_folded_by_construct".format(PATH, proj_name),
+    os.path.join(PATH, f"{proj_name}_plot_frac_folded_by_construct.png"),
     dpi=500,
     bbox_inches="tight",
 )
@@ -540,7 +540,7 @@ plt.ylabel("Normalized Signal", fontdict=label_font)
 
 # saving plot in individual doc
 plt.savefig(
-    "{0}{1}_plot_normalized_by_construct".format(PATH, proj_name),
+    os.path.join(PATH, f"{proj_name}_plot_normalized_by_construct.png"),
     dpi=500,
     bbox_inches="tight",
 )
@@ -671,11 +671,6 @@ for j in range(0, bs_iter_tot):
             bs_chisqr,
         ]
     )
-
-    # Let the processer have a little break every 100 bs iterations.  Probably unnecessary
-    if bs_iter_count % 25 == 0:
-        print("Taking a break to cool down")
-        time.sleep(120)
 
 
 with open(os.path.join(PATH, f"{proj_name}_bootstrap_params.csv"), "w") as n:

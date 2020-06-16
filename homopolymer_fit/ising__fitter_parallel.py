@@ -394,7 +394,7 @@ if __name__ == "__main__":
 
     # saving plot in individual doc
     plt.savefig(
-        os.path.join(PATH, f"{proj_name}_plot_frac_folded_by_melt"),
+        os.path.join(PATH, f"{proj_name}_plot_frac_folded_by_melt.png"),
         dpi=500,
         bbox_inches="tight",
     )
@@ -441,7 +441,7 @@ if __name__ == "__main__":
 
     # saving plot in individual doc
     plt.savefig(
-        os.path.join(PATH, f"{proj_name}_plot_normalized_by_melt"),
+        os.path.join(PATH, f"{proj_name}_plot_normalized_by_melt.png"),
         dpi=500,
         bbox_inches="tight",
     )
@@ -502,7 +502,7 @@ if __name__ == "__main__":
 
     # saving plot in individual doc
     plt.savefig(
-        os.path.join(PATH, f"{proj_name}_plot_frac_folded_by_construct"),
+        os.path.join(PATH, f"{proj_name}_plot_frac_folded_by_construct.png"),
         dpi=500,
         bbox_inches="tight",
     )
@@ -557,7 +557,7 @@ if __name__ == "__main__":
 
     # saving plot in individual doc
     plt.savefig(
-        os.path.join(PATH, f"{proj_name}_plot_normalized_by_construct"),
+        os.path.join(PATH, f"{proj_name}_plot_normalized_by_construct.png"),
         dpi=500,
         bbox_inches="tight",
     )
