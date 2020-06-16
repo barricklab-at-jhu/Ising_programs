@@ -15,7 +15,7 @@ In addition there is a folder (```data_conversion```) with some additional scrip
 
 Finally, there is a folder for calculation of partial correlation coefficients from bootstrapped thermodynamic parameters (```partial_correlation```).
 
-All folders contain data files which contain protein folding data on which the scripts can be run.  All programs were written to run in python 3.8.
+All folders contain data files which contain protein folding data on which the scripts can be run.  All programs were written in python 3.8.
 
 A detailed description of this suite of programs and its applications will soon be submitted to the journal Protein Science
 for publication.  A preprint can be obtained from Doug Barrick (barrick@jhu.edu).
