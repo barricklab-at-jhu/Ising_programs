@@ -2,5 +2,3 @@ This directory contains folders for two modified data conversion scripts.  The f
 files with multiple melts, which we use for construt series of different types (e.g., NRC and NRXC) 
 and coverts to a set of numpy files, one for each melt.  The second takes a single csv file and converts
 to numpy files, one for each melt.
-
-These should be run in python 2.7
