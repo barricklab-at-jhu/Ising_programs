@@ -20,6 +20,17 @@ All folders contain data files which contain protein folding data on which the s
 A detailed description of this suite of programs and its applications will soon be submitted to the journal Protein Science
 for publication.  A preprint can be obtained from Doug Barrick (barrick@jhu.edu).
 
+## Publications which use these programs
+1) Marold JD, Kavran, JM, Bowman GD, Barrick D. A naturally occurring repeat protein with high internal sequence identity defines a new class of TPR-like proteins. *Structure*. 2015 Nov 3; 23(11): 2055–2065. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4811334/.
+
+2) Geiger-Schuller K, Barrick D. Broken TALEs: Transcription activator-like effectors populate partly folded states. Biophys J. 2016;111:2395–2403
+
+3) Geiger-Schuller K, Sforza K, Yuhas M, Parmeggiani F, Baker D, Barrick D. Extreme stability in de novo-designed repeat arrays is determined by unusually stable short-range interactions. *Proc Natl Acad Sci U S A* 2018 Jul 17; 115(29): 7539–7544. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6055163/.
+
+4) Geiger-Schuller K, Mitra J, Ha T, Barrick D. Functional instability allows access to DNA in longer transcription Activator-Like effector (TALE) arrays. *Elfie*. 2019 Feb 27;8:e38298.https://pubmed.ncbi.nlm.nih.gov/30810525/
+
+If you would like your work cited here, please contact barrick@jhu.edu.
+
 ## License
 [License](LICENSE.txt)
 
