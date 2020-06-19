@@ -42,7 +42,7 @@ To run the most recent code, follow the instructions below:
   
 2. Create and activate a new environment (requires conda or miniconda):
     ```bash
-    conda env create -f environment.yml
+    conda env create -f ./Ising_programs/environment.yml
     conda activate ising_py3
     ```
    
@@ -53,11 +53,11 @@ To run a version of the code linked to the publication, <insert protein science 
   
 2. Create and activate a new environment (requires conda or miniconda):
     ```bash
-    conda env create -f environment.yml
+    conda env create -f ./Ising_programs/environment.yml
     conda activate ising_py3
     ```
 
-If one is more comfortable working in ```virtualenv```, a ```requirements.txt``` also provided.
+If one is more comfortable working in ```virtualenv```, a ```requirements.txt``` is also provided.
 
 ## Quikstart
 1. To run the code via the self-contained instructional notebooks (after setup above):
