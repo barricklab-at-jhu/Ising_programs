@@ -35,7 +35,7 @@ If you would like your work cited here, please contact barrick@jhu.edu.
 [License](LICENSE.txt)
 
 ## Setup
-To run the most recent code, follow the instructions below:
+To run the most recent code, follow the instructions below:git
 1. git clone the repository:
 
     ```git clone https://github.com/barricklab-at-jhu/Ising_programs.git```
