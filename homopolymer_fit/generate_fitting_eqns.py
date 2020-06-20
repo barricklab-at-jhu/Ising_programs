@@ -125,6 +125,35 @@ for construct in frac_folded_dict:
 with open(os.path.join(PATH, f"{proj_name}_frac_folded_dict.json"), "w") as f:
     json.dump(frac_folded_dict, f)
 
+#  The code block below calculates the rank of the coefficient matrix 
+#  and outputs it to the user.
+
+num_constructs = len(constructs)
+thermo_param_list = ['dGN','dGR','dGC','dGinter']
+num_params = len(thermo_param_list)
+
+coeff_matrix = np.zeros((num_constructs, num_params))
+
+row = 0
+for construct in constructs:
+    repeats_list = construct.split('_')
+    for repeat in repeats_list:
+        if repeat == 'N':
+            coeff_matrix[row, 0] = coeff_matrix[row, 0] + 1
+        elif repeat == 'R':
+            coeff_matrix[row, 1] = coeff_matrix[row, 1] + 1
+        else: 
+            coeff_matrix[row, 2] = coeff_matrix[row, 2] + 1
+    coeff_matrix[row, 3] = len(repeats_list) - 1
+    row = row + 1
+        
+rank = np.linalg.matrix_rank(coeff_matrix)
+
+if rank == num_params:
+    print("\nThe coefficeint matrix has full column rank (r=",rank,")") #leaves a space betw rank and ).  Not sure why.
+else:
+    print("\nThe coefficeint matrix has incomplete column rank (r=",rank,").")
+    print("You should revise your model or include the necessary constructs to obtain full rank.\n")
 
 stop = time.time()
 runtime = stop - start
