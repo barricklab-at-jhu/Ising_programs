@@ -177,6 +177,68 @@ for construct in frac_folded_dict:
 with open(os.path.join(PATH, f"{proj_name}_frac_folded_dict.json"), "w") as f:
     json.dump(frac_folded_dict, f)
 
+#  The next code block caluclates the rank of the coefficient matrix
+#  and returns it to the user.
+
+num_constructs = len(constructs)
+thermo_param_list = ['dGN','dGR','dGX','dGC','dGRR','dGXX','dGXR','dGRX']
+num_params = len(thermo_param_list)
+
+coeff_matrix = np.zeros((num_constructs, num_params))
+
+row = 0
+for construct in constructs:
+    repeats_list = construct.split('_')
+    # For first repeat, don't need (or want) to worry about interface.
+    i = 0
+    if repeats_list[i] == 'N':
+        coeff_matrix[row, 0] = 1
+    elif repeats_list[i] == 'R':
+        coeff_matrix[row, 1] = coeff_matrix[row, 1] + 1
+    elif repeats_list[i] == 'X':
+        coeff_matrix[row, 2] = coeff_matrix[row, 2] + 1
+    else: 
+        coeff_matrix[row, 3] = 1
+    
+    # For remaining repeats, need to worry about interfaces
+    i = 1   
+    while i < len(repeats_list):
+        if repeats_list[i] == 'R':
+            coeff_matrix[row, 1] = coeff_matrix[row, 1] + 1
+        elif repeats_list[i] == 'X':
+            coeff_matrix[row, 2] = coeff_matrix[row, 2] + 1
+        else: 
+            coeff_matrix[row, 3] = 1
+        
+        if repeats_list[i] == 'R':
+            if (repeats_list[i-1] == 'N' or repeats_list[i-1] == 'R'):
+                coeff_matrix[row, 4] = coeff_matrix[row, 4] + 1  # RR-type interface (includes NR)
+            else:
+                coeff_matrix[row, 6] = coeff_matrix[row, 6] + 1  # XR interface
+
+        if repeats_list[i] == 'X':
+            if (repeats_list[i-1] == 'N' or repeats_list[i-1] == 'R'):
+                coeff_matrix[row, 7] = coeff_matrix[row, 7] + 1  # RX-type interface (includes NX)
+            else:
+                coeff_matrix[row, 5] = coeff_matrix[row, 5] + 1  # XX interface
+
+        if repeats_list[i] == 'C':
+            if (repeats_list[i-1] == 'R'):
+                coeff_matrix[row, 4] = coeff_matrix[row, 4] + 1  # RR-type interface (RC)
+            else:
+                coeff_matrix[row, 6] = coeff_matrix[row, 6] + 1  # XR-type interface (XC)
+            
+        i =i + 1
+    row = row + 1
+        
+rank = np.linalg.matrix_rank(coeff_matrix)
+
+if rank == num_params:
+    print("\nThe coefficeint matrix has full column rank (r=",rank,")") #leaves a space betw rank and ).  Not sure why.
+else:
+    print("\nThe coefficeint matrix has incomplete column rank (r=",rank,").") 
+    print("You should revise your model or include the necessary constructs to obtain full rank.\n")
+
 stop = time.time()
 runtime = stop - start
 print("\nThe elapsed time was " + str(runtime) + " sec")
