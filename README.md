@@ -42,7 +42,7 @@ To run the most recent code, follow the instructions below:git
   
 2. Navigate to the ```Ising_programs``` directory and create and activate a new environment using the ```.yml``` file (requires conda or miniconda):
     ```bash
-    conda env create -f environment.yml
+    conda env create -f ./Ising_programs/environment.yml
     conda activate ising_py3
     ```
    
@@ -54,6 +54,7 @@ To run a version of the code linked to the publication, <insert protein science 
 2. Navigate to the ```Ising_programs``` directory and create and activate a new environment using the ```.yml``` file (requires conda or miniconda):
     ```bash
     conda env create -f /environment.yml
+
     conda activate ising_py3
     ```
 
