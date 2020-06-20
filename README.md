@@ -35,12 +35,12 @@ If you would like your work cited here, please contact barrick@jhu.edu.
 [License](LICENSE.txt)
 
 ## Setup
-To run the most recent code, follow the instructions below:
+To run the most recent code, follow the instructions below:git
 1. git clone the repository:
 
     ```git clone https://github.com/barricklab-at-jhu/Ising_programs.git```
   
-2. Create and activate a new environment (requires conda or miniconda):
+2. Navigate to the ```Ising_programs``` directory and create and activate a new environment using the ```.yml``` file (requires conda or miniconda):
     ```bash
     conda env create -f ./Ising_programs/environment.yml
     conda activate ising_py3
@@ -51,9 +51,10 @@ To run a version of the code linked to the publication, <insert protein science 
 
     ```git clone -b publication_master https://github.com/barricklab-at-jhu/Ising_programs.git```
   
-2. Create and activate a new environment (requires conda or miniconda):
+2. Navigate to the ```Ising_programs``` directory and create and activate a new environment using the ```.yml``` file (requires conda or miniconda):
     ```bash
-    conda env create -f ./Ising_programs/environment.yml
+    conda env create -f /environment.yml
+
     conda activate ising_py3
     ```
 
