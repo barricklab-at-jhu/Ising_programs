@@ -98,6 +98,7 @@ heteropolymer_fit/T4V_NRC_2mi_bootstrap_stats.csv
 heteropolymer_fit/T4V_NRC_2mi_Corr_Plots.pdf
 heteropolymer_fit/*.png
 heteropolymer_fit/T4V_NRC_2mi_bootstrap_params.csv
+heteropolymer_fit/T4V_NRC_2mi_Corr_Plots.pdf
 
 
 # homopolymer fit output files
@@ -112,6 +113,7 @@ homopolymer_fit/cANK_plot_normalized_by_construct.png
 homopolymer_fit/cANK_plot_normalized_by_melt.png
 homopolymer_fit/cANK_bootstrap_params.csv
 homopolymer_fit/*.png
+homopolymer_fit/cANK_Corr_Plots.pdf
 # pyenv
 #   For a library or package, you might want to ignore these files since the code is
 #   intended to run in multiple environments; otherwise, check them in:
