@@ -40,7 +40,7 @@ To run the most recent code, follow the instructions below:
 
     ```git clone https://github.com/barricklab-at-jhu/Ising_programs.git```
   
-2. Create and activate a new environment (requires conda or miniconda):
+2. Navigate to the ```Ising_programs``` directory and create and activate a new environment using the ```.yml``` file (requires conda or miniconda):
     ```bash
     conda env create -f environment.yml
     conda activate ising_py3
@@ -51,13 +51,13 @@ To run a version of the code linked to the publication, <insert protein science 
 
     ```git clone -b publication_master https://github.com/barricklab-at-jhu/Ising_programs.git```
   
-2. Create and activate a new environment (requires conda or miniconda):
+2. Navigate to the ```Ising_programs``` directory and create and activate a new environment using the ```.yml``` file (requires conda or miniconda):
     ```bash
-    conda env create -f environment.yml
+    conda env create -f /environment.yml
     conda activate ising_py3
     ```
 
-If one is more comfortable working in ```virtualenv```, a ```requirements.txt``` also provided.
+If one is more comfortable working in ```virtualenv```, a ```requirements.txt``` is also provided.
 
 ## Quikstart
 1. To run the code via the self-contained instructional notebooks (after setup above):
